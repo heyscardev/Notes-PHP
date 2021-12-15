@@ -55,13 +55,13 @@
         class="col-12 col-md-2  d-flex animate__animated animate__fadeInRight animate__delay-3s justify-content-center">
         <button type="button" class="btn btn-primary bg-transparent  border-0 ">
           <div class="ratio ratio-1x1">
-            <img src="icons/notas-icon-app.svg" alt="Notas_icon"
+            <img src="icons/actividades-icon-app.svg" alt="Notas_icon"
               class="img-boton  rounded-circle border border-5 border-primary w-100 bg-white ">
           </div>
 
 
 
-          <label for="" class=" fs-5 text-primary  text-decoration-underline">Tus Notas</label>
+          <label for="" class=" fs-5 text-primary  text-decoration-underline">Actividades</label>
         </button>
       </div>
       <div

@@ -6,6 +6,9 @@ function app(){
 function home(){
     require_once('views/home.php');
 }
+function createTask(){
+    require_once('views/Tasks/Create.php');
+}
 
 }
 ?>
