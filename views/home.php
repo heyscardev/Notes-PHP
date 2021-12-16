@@ -16,8 +16,9 @@
             class="banner-principal display-1 display-lg-2 fw-bolder animate__animated  animate__backInLeft text-primary">
             YO SOY <span class="text-secondary">NOTES</span></h1>
           <p class="subtitle display-6">Estoy aqui para ayudarte con tus notas academicas</p>
-          <button type="button"
-            class="btn btn-lg btn-outline-primary bg-secondary border-primary text-primary animate__animated animate__infinite  animate__heartBeat animate__slow fw-bolder border-5  ">REGISTRATE</button>
+          <a href="./?controlador=views&accion=registeruser" type="button"
+            class="btn btn-lg btn-outline-primary bg-secondary border-primary text-primary animate__animated animate__infinite  animate__heartBeat animate__slow fw-bolder border-5  ">
+            REGISTRATE</a>
 
         </div>
 

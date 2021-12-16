@@ -66,7 +66,7 @@
             </div>
             <div class="text-center mt-3 row">
               <label for="" class=" fs-6 text-black-50">¿no tienes una cuenta?</label>
-              <a href=""
+              <a href="./?controlador=views&accion=registeruser"
                 class="text-primary text-decoration-none animate__animated animate__pulse animate__infinite fw-bolder">Registrate</a>
             </div>
           </div>

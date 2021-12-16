@@ -6,14 +6,16 @@ class Tasks{
     private $description;
     private $subjectNote;
     private $deliverDate;
+    private $nCorte;
     
-    public function __construct($idTask,$idSubjectStudied,$name,$description,$subjectNote,$deliverDate ) {
+    public function __construct(int $idTask,int $idSubjectStudied,string $name,string $description,float $subjectNote,DateTime $deliverDate,$nCorte ) {
         $this->idTask = $idTask;
         $this->idSubjectStudied = $idSubjectStudied;
         $this->name = $name;
         $this->description = $description;
         $this->subjectNote = $subjectNote;
         $this->deliverDate = $deliverDate;
+        $this->nCorte = $nCorte;
     }
 
     /**
@@ -132,6 +134,26 @@ class Tasks{
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nCorte
+     */ 
+    public function getNCorte()
+    {
+        return $this->nCorte;
+    }
+
+    /**
+     * Set the value of nCorte
+     *
+     * @return  self
+     */ 
+    public function setNCorte($nCorte)
+    {
+        $this->nCorte = $nCorte;
 
         return $this;
     }

@@ -9,6 +9,8 @@ function home(){
 function createTask(){
     require_once('views/Tasks/Create.php');
 }
-
+function registerUser(){
+    require_once('views/user/create.php');
+}
 }
 ?>
