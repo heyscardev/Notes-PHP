@@ -42,9 +42,10 @@
               <!--completado rounded-->
               <div class="row justify-content-center">
                 <div class="col-5">
-                  <div class="ratio align-items-center  ratio-1x1 w-auto text-center bg-secondary text-primary rounded-circle border border-4 border-white   ">
+                  <div class="ratio align-items-center  ratio-1x1 w-auto text-center  text-primary rounded-circle border border-4 border-white   "
+                  style="background-image: linear-gradient(to top right ,rgba(52, 200, 212,.2) <?php echo $head_principal["completado"];?>%, rgba( 220, 220, 220,1) 100%);">
                     <div class="  d-flex align-items-center justify-content-center">
-                      <div class=""><label class="fs-2 fw-bolder   " for=""><?php echo $head_principal["completado"] ?>%</label></div>
+                      <div class=""><label class="fs-2 fw-bolder  text-white " for=""><?php echo $head_principal["completado"] ?>%</label></div>
                     </div>
 
 
@@ -104,8 +105,8 @@
             <td><?php echo promedio($period->getIdPeriod()); ?></td>
             <td><?php echo cursado($period->getIdPeriod()); ?></td>
             <td>
-              <a href="" class="btn "><img src="icons/edit-icon.svg" alt="edit"></a>
-              <a href="" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
+              <button href="" id="btn-edit" class="btn "><img src="icons/edit-icon.svg" alt="edit"></button>
+              <a href="./?controlador=Periods&accion=borrar&id=<?php echo $period->getIdPeriod(); ?>" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
               <a href="" class="btn "><img src="icons/arrow-star-icon.svg" style="transform: rotate(180deg);" alt="ir"></a>
             </td>
 

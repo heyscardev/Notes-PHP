@@ -22,14 +22,23 @@ class PeriodsController{
 
         require_once('views/periods/index.php');
     }
-    public function create(){
-        
-    }
+ 
     private function register(){
        if(isset($_POST["codigo"])&&isset($_POST["start_date"])&&isset($_POST["end_date"])){
        CRUDPeriods::Create(new Periods(2,1,strtoupper($_POST["codigo"]),$_POST["start_date"],$_POST["end_date"]));
-       
+       header("location: ./?controlador=Periods&accion=inicio");
         
        }
+    }
+    public function borrar(){
+        if(isset($_GET["id"])){
+            if(is_numeric($_GET["id"])){
+                CRUDPeriods::Delete(intval($_GET["id"]));
+                header("location: ./?controlador=Periods&accion=inicio");
+            }else{
+                echo "el id no es numero";
+            }
+        
+        }
     }
 }
