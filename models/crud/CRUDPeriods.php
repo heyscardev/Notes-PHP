@@ -5,7 +5,7 @@ include_once("connection.php");
 class CRUDPeriods{
     public static function Create(Periods $newObject){
         $cn = Connection::getInstance();
-        $comand = "INSERT INTO periods(id_user,cod_period,star_date,end_date) VALUES(?,?,?,?)" ;
+        $comand = "INSERT INTO periods(id_user,cod_period,start_date,end_date) VALUES(?,?,?,?)" ;
         $sql = $cn->prepare($comand);
         $sql->execute(array($newObject->getIdUser(),$newObject->getCodPeriod(),$newObject->getStartDate(),$newObject->getEndDate()));
         

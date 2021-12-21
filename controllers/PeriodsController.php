@@ -10,7 +10,7 @@ class PeriodsController{
         $head_principal["state"]= "por reprobar";
         $head_principal["period"] = "2-2020";
         $datos_periodos = CRUDPeriods::ReadAll();
-        
+        $this->register();
         function promedio($id_period){
             return 1;
         }
@@ -24,5 +24,12 @@ class PeriodsController{
     }
     public function create(){
         
+    }
+    private function register(){
+       if(isset($_POST["codigo"])&&isset($_POST["start_date"])&&isset($_POST["end_date"])){
+       CRUDPeriods::Create(new Periods(2,1,strtoupper($_POST["codigo"]),$_POST["start_date"],$_POST["end_date"]));
+       
+        
+       }
     }
 }
