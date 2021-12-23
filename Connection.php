@@ -3,7 +3,7 @@ class Connection{
 private static  $conec = NULL;
 private  static $DB_NAME = 'db_notes';
 private static $USER_NAME= 'root'; 
-private static $USER_PASS = '12345678';
+private static $USER_PASS = '';
 private static  $HOST = '127.0.0.1';
 
 private function __construct(){

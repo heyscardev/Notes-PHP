@@ -5,12 +5,13 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
+          
           <h5 class="modal-title text-primary fs-1" id="exampleModalLabel">MODIFICACION DE PERIODO</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body py-2 bg-secondary">
           <!--                   -->
-          <form action="./?controlador=Periods&accion=editar&id=<?php echo $period->getIdPeriod()  ?>" method="post" class="row g-3 needs-validation" id="form-c-period" novalidate>
+          <form action="./?controlador=Periods&accion=editar&id=<?php echo $period->getIdPeriod();  ?>" method="post" class="row g-3 needs-validation" id="form-e-period<?php echo $period->getIdPeriod(); ?>" novalidate>
 
 
             <div class="col-md-12">
@@ -47,7 +48,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary fw-bolder text-primary" data-bs-dismiss="modal">Cancelar</button>
-          <button class="btn btn-primary fw-bolder text-white" name="editar" form="form-c-period" type="submit">Editar</button>
+          <button class="btn btn-primary fw-bolder text-white" name="editar" form="form-e-period<?php echo $period->getIdPeriod(); ?>" type="submit">Editar</button>
         </div>
       </div>
     </div>

@@ -108,9 +108,9 @@
               <button  data-bs-toggle="modal" data-bs-target="#edit-<?php echo $period->getIdPeriod() ?>" class="btn "><img src="icons/edit-icon.svg" alt="edit"></button>
               <a href="./?controlador=Periods&accion=borrar&id=<?php echo $period->getIdPeriod(); ?>" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
               <a href="" class="btn "><img src="icons/arrow-star-icon.svg" style="transform: rotate(180deg);" alt="ir"></a>
-              <?php require_once("views/periods/updateModal.php"); ?>
+              
             </td>
-
+            <?php  require("views/periods/updateModal.php"); ?>
           </tr>
         <?php }; ?>
       </tbody>
@@ -120,12 +120,12 @@
 
   <!-- Button trigger modal -->
   <div class="position-absolute bottom-0 m-5 end-0 ">
-    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="   text-primary fw-bolder btn  bg-white  rounded-circle   border-5 border-primary fs-1 p-0 lh-xs px-3 ">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-create" class="   text-primary fw-bolder btn  bg-white  rounded-circle   border-5 border-primary fs-1 p-0 lh-xs px-3 ">
       <img class=" d-flex align-items-center py-3 img-fluid " src="icons/plus-icon.svg" alt=""></button>
   </div>
 
   <!-- Modal -->
-  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade " id="modal-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -134,7 +134,7 @@
         </div>
         <div class="modal-body py-2 bg-secondary">
           <!--                   -->
-          <form method="post" class="row g-3 needs-validation" id="form-c-period" novalidate>
+          <form method="post"  class="row g-3 needs-validation" id="form-c-period" novalidate>
 
 
             <div class="col-md-12">
