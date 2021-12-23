@@ -42,6 +42,12 @@ class CRUDPeriods{
         
         return $sql->execute(array($id));
     }
+    public static function update(Periods $per){
+        $cn = Connection::getInstance();
+        $comand = "UPDATE periods SET cod_period = ? , start_date = ? ,end_date = ?  WHERE id_period = ?";
+        $sql = $cn->prepare($comand);
+        $sql->execute(array($per->getCodPeriod(),$per->getStartDate(),$per->getEndDate(),$per->getIdPeriod()));
+    }
 
 }
 ?>

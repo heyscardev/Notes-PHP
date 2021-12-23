@@ -1,11 +1,11 @@
 <?php
 include_once("models/Periods.php");
 include_once("models/crud/CRUDPeriods.php");
-include_once("models/AcademicData.php");
+
 class PeriodsController{
     public function inicio(){
-        $carrer = new AcademicData(1,"iujo","informatica","Tecnico Superior",12,11);
-        $head_principal["carrer"] = "none carrer";
+       
+        $head_principal["carrer"] = "Informatica";
         $head_principal["completado"]= "12";
         $head_principal["state"]= "por reprobar";
         $head_principal["period"] = "2-2020";
@@ -30,6 +30,13 @@ class PeriodsController{
         
        }
     }
+    public function editar(){
+        
+        if(isset(($_POST["editar"]))){
+            CRUDPeriods::update(new Periods(1,$_GET["id"],$_POST["cod_period"],$_POST["start_date"],$_POST["end_date"]));
+            header("location: ./?controlador=Periods&accion=inicio");
+        }
+    }
     public function borrar(){
         if(isset($_GET["id"])){
             if(is_numeric($_GET["id"])){
@@ -40,5 +47,6 @@ class PeriodsController{
             }
         
         }
+
     }
 }

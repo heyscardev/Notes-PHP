@@ -6,7 +6,7 @@ class Periods{
     private $startDate;
     private $endDate;
 
-    public function __construct($idUser,$idPeriod, $codPeriod, $startDate,$endDate)
+    public function __construct(int $idUser,int $idPeriod, $codPeriod, $startDate,$endDate)
     {
        $this->idUser = $idUser;
        $this->idPeriod = $idPeriod;
@@ -20,7 +20,7 @@ class Periods{
         return $this->idUser;
     }
 
-    public function setIdUser($idUser)
+    public function setIdUser(int $idUser)
     {
         $this->idUser = $idUser;
 
@@ -32,7 +32,7 @@ class Periods{
         return $this->idPeriod;
     }
 
-    public function setIdPeriod($idPeriod)
+    public function setIdPeriod(int $idPeriod)
     {
         $this->idPeriod = $idPeriod;
 

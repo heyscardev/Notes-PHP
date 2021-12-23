@@ -26,7 +26,7 @@
           <div class="row align-items-center text-white ps-5 ">
             <div class="col  ">
               <div class="row ">
-                <label class="text-white fs-3 fw-bolder">Perido: <span><?php echo $head_principal["period"] ?></span></label>
+                <label class="text-white fs-3 fw-bolder">Periodo actual: <span><?php echo $head_principal["period"] ?></span></label>
               </div>
               <div class="row  mx-3 fs-5 ">
                 <div class="col   "><label class="mx-2 fw-bolder fs-4" for="">Carrera:</label><label for=""><?php echo $head_principal["carrer"] ?></label></div>
@@ -105,9 +105,10 @@
             <td><?php echo promedio($period->getIdPeriod()); ?></td>
             <td><?php echo cursado($period->getIdPeriod()); ?></td>
             <td>
-              <button href="" id="btn-edit" class="btn "><img src="icons/edit-icon.svg" alt="edit"></button>
+              <button  data-bs-toggle="modal" data-bs-target="#edit-<?php echo $period->getIdPeriod() ?>" class="btn "><img src="icons/edit-icon.svg" alt="edit"></button>
               <a href="./?controlador=Periods&accion=borrar&id=<?php echo $period->getIdPeriod(); ?>" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
               <a href="" class="btn "><img src="icons/arrow-star-icon.svg" style="transform: rotate(180deg);" alt="ir"></a>
+              <?php require_once("views/periods/updateModal.php"); ?>
             </td>
 
           </tr>
