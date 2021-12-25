@@ -1,5 +1,6 @@
 <?php
 include_once("models/Users.php");
+include_once("Connection.php");
 
 class CRUDUsers{
     public static function Create(Users $newObject){
@@ -14,6 +15,19 @@ class CRUDUsers{
         $user = NULL;
         $cn = Connection::getInstance();
         $comand = "SELECT * FROM `users` WHERE users.email = \"$email\" AND USERS.password = \"$password\"" ;
+        $sql = $cn->query($comand);
+        
+        
+        foreach($sql->fetchAll() as $newUser){
+            $user = new Users($newUser['id_user'],$newUser['email'],$newUser['password']);
+        }
+        
+        return $user;
+    }
+    public static function ReadById(int $id){
+        $user = NULL;
+        $cn = Connection::getInstance();
+        $comand = "SELECT * FROM `users` WHERE users.id_user = $id" ;
         $sql = $cn->query($comand);
         
         

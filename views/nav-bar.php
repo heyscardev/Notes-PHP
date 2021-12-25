@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg py-2 fs-5 bg-light">
     <!--Cada cosa que se hace en Bootstrap se hace con un div para que sea responsive-->
     <div class="container-lg justify-content-between">
@@ -38,50 +39,24 @@
       <a class="navbar-brand  text-primary fw-bolder fs-1 position-absolute top-50 start-50 translate-middle"
         href="#">NO<span class="text-white ">TES</span>
       </a>
+     
       <div class="">
-        <form class=" formulario-sesion collapse bg-white border-3" id="collapselogin">
-          <div class="mx-2 my-3 mx-lg-3 my-lg-4  justify-content-center">
-            <div class="text-center">
-              <label class="text-primary fw-bolder fs-4">LOGIN</label>
-            </div>
-            <div class="mb-3 mt-3 ">
-              <label for="exampleInputEmail1" class="form-label  text-black-50 fs-5 ms-4 ">Correo</label>
-              <input type="email"
-                class="form-control text-decoration-none border border-primary border-4 bg-info fw-bolder text-white"
-                id="exampleInputEmail1" aria-describedby="emailHelp">
-
-            </div>
-            <div class="mb-3 ">
-              <label for="exampleInputPassword1" class="form-label text-black-50 fs-5 ms-4">Contraseña</label>
-              <input type="password" class="form-control bg-info border border-4 border-primary fw-bolder text-white" id="exampleInputPassword1">
-            </div>
-            <!--<div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">sesion activa</label>
-            </div>-->
-            <div class=" text-center">
-              <button type="submit"
-                class="btn btn-outline-secondary     border-4 border-primary text-primary  fw-bolder">iniciar
-                sesion</button>
-            </div>
-            <div class="text-center mt-3 row">
-              <label for="" class=" fs-6 text-black-50">¿no tienes una cuenta?</label>
-              <a href="./?controlador=users&accion=register"
-                class="text-primary text-decoration-none animate__animated animate__pulse animate__infinite fw-bolder">Registrate</a>
-            </div>
-          </div>
-
-        </form>
-
+      <?php if(!LoginController::getSesionState()){ 
+        require_once("views/user/login.php");
+         }else{
+          require_once("views/user/options.php");
+         
+         } ?>
+         
         <div class=" boton-login align-items-end">
           <button class="btn " type="button" data-bs-toggle="collapse" data-bs-target="#collapselogin"
             aria-expanded="true" aria-controls="collapselogin">
             <div class="row align-content-lg-center ">
              
-                <span class="col-6 lh-lg  d-none d-md-block align-items-lg-center text-end fw-bolder fs-4 text-white ">Login 
+                <span class="col-8 lh-lg  d-none d-md-block align-items-lg-center text-end fw-bolder fs-5 text-white p"><?php if(LoginController::getSesionState()){echo $_SESSION["email"];}else{echo "Login";} ?> 
                 </span>
           
-              <div class="col-6">
+              <div class="col-4">
                 <svg
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1"
                 class="icon-login d-md-grid" viewBox="0 0 698 698">
@@ -129,6 +104,7 @@
           </button>
 
         </div>
+        
       </div>
 
 

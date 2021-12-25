@@ -1,4 +1,14 @@
 <?php
+require_once('views/error.php');
+require_once("controllers/LoginController.php");
+session_start();
+if(LoginController::sesionComprove()){
+
+}
+else{
+LoginController::Login();
+}
+
 
 
 if (

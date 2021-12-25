@@ -16,9 +16,10 @@
             class="banner-principal display-1 display-lg-2 fw-bolder animate__animated  animate__backInLeft text-primary">
             YO SOY <span class="text-secondary">NOTES</span></h1>
           <p class="subtitle display-6">Estoy aqui para ayudarte con tus notas academicas</p>
-          <a href="./?controlador=users&accion=register" type="button"
+         <?php if(!LoginController::getSesionState()){ ?>
+         <a href="./?controlador=users&accion=register" type="button"
             class="btn btn-lg btn-outline-primary bg-secondary border-primary text-primary animate__animated animate__infinite  animate__heartBeat animate__slow fw-bolder border-5  ">
-            REGISTRATE</a>
+            REGISTRATE</a><?php } ?>
 
         </div>
 

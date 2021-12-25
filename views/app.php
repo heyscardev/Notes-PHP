@@ -1,7 +1,10 @@
 <body class="bg-secondary">
   <!-- navbar  -->
   <?php
-  require_once('nav-bar.php')
+  require_once('nav-bar.php');
+  if(LoginController::getSesionState()){
+  
+  
   ?>
 
   <!-- Este div es el centro donde estan los botones-->
@@ -98,6 +101,9 @@
     <!-- UNa imagen de pie -->
     <img class="position-fixed bottom-0 wave start-0 animate__animated " src="icons/wave .svg" alt="wave">
   </div>
+  <?php 
+  
+  }else{  ErrorControl::errorNoLogin(); }?>
 
   <script src="js/bootstrap.bundle.min.js"></script>
 </body>

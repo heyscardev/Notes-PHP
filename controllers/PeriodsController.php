@@ -24,21 +24,36 @@ class PeriodsController{
     }
  
     private function register(){
-       if(isset($_POST["codigo"])&&isset($_POST["start_date"])&&isset($_POST["end_date"])){
-       CRUDPeriods::Create(new Periods(2,1,strtoupper($_POST["codigo"]),$_POST["start_date"],$_POST["end_date"]));
-       header("location: ./?controlador=Periods&accion=inicio");
+        if(LoginController::getSesionState()){
+            if(isset($_POST["codigo"])&&isset($_POST["start_date"])&&isset($_POST["end_date"])){
+                CRUDPeriods::Create(new Periods(2,1,strtoupper($_POST["codigo"]),$_POST["start_date"],$_POST["end_date"]));
+                header("location: ./?controlador=Periods&accion=inicio");}
+    
+        }
+        else{
+        ErrorControl::appNoLoginRedirect();
+        }
+      
         
-       }
+       
     }
     public function editar(){
-        
+        if(LoginController::getSesionState()){
         if(isset(($_POST["editar"]))){
             CRUDPeriods::update(new Periods(1,$_GET["id"],$_POST["cod_period"],$_POST["start_date"],$_POST["end_date"]));
             header("location: ./?controlador=Periods&accion=inicio");
         }
+        }
+        else{
+        ErrorControl::appNoLoginRedirect();
+        }
+        
+        
+      
     }
     public function borrar(){
-        if(isset($_GET["id"])){
+        if(LoginController::getSesionState()){
+         if(isset($_GET["id"])){
             if(is_numeric($_GET["id"])){
                 CRUDPeriods::Delete(intval($_GET["id"]));
                 header("location: ./?controlador=Periods&accion=inicio");
@@ -47,6 +62,11 @@ class PeriodsController{
             }
         
         }
+        }
+        else{
+        ErrorControl::appNoLoginRedirect();
+        }
+       
 
     }
 }
