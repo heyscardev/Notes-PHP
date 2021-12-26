@@ -24,6 +24,19 @@ class CRUDPeriods{
         
         return $period;
     }
+    public static function ReadByIdUser(int $id_User){
+        $period = [];
+        $cn = Connection::getInstance();
+        $comand = "SELECT * FROM `periods` WHERE periods.id_user = \"$id_User\" ";
+        $sql = $cn->query($comand);
+        
+        
+        foreach($sql->fetchAll() as $newPeriod){
+            $period[] = new Periods($newPeriod['id_user'],$newPeriod['id_period'],$newPeriod['cod_period'],$newPeriod['start_date'],$newPeriod['end_date']);
+        }
+        
+        return $period;
+    }
     public static function ReadAll(){
         $listaPeriodos = [];
         $cn = Connection::getInstance();

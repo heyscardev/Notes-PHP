@@ -9,7 +9,7 @@ class PeriodsController{
         $head_principal["completado"]= "12";
         $head_principal["state"]= "por reprobar";
         $head_principal["period"] = "2-2020";
-        $datos_periodos = CRUDPeriods::ReadAll();
+        $datos_periodos = CRUDPeriods::ReadByIdUser(2);
         $this->register();
         function promedio($id_period){
             return 1;
@@ -26,7 +26,7 @@ class PeriodsController{
     private function register(){
         if(LoginController::getSesionState()){
             if(isset($_POST["codigo"])&&isset($_POST["start_date"])&&isset($_POST["end_date"])){
-                CRUDPeriods::Create(new Periods(2,1,strtoupper($_POST["codigo"]),$_POST["start_date"],$_POST["end_date"]));
+                CRUDPeriods::Create(new Periods(LoginController::getIdUser(),1,strtoupper($_POST["codigo"]),$_POST["start_date"],$_POST["end_date"]));
                 header("location: ./?controlador=Periods&accion=inicio");}
     
         }

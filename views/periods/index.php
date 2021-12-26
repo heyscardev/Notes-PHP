@@ -1,7 +1,10 @@
 <body class="bg-secondary">
   <!-- navbar  -->
   <?php
-  require_once('views/nav-bar.php');
+
+use function PHPSTORM_META\type;
+
+require_once('views/nav-bar.php');
 
   ?>
   <div class="col-1  align-items-start justify-content-end d-flex ">
@@ -96,14 +99,20 @@
         <?php
 
         foreach ($datos_periodos as $period) {
+        
+        $array = (array) $period;
+        echo gettype($period->getStartDate()); 
+        
+        
         ?>
+        
           <tr class=" text-center overflow-overflow-hidden lh-lg">
 
             <td><?php echo $period->getCodPeriod(); ?></td>
             <td><?php echo $period->getStartDate(); ?></td>
             <td><?php echo $period->getEndDate(); ?></td>
             <td><?php echo promedio($period->getIdPeriod()); ?></td>
-            <td><?php echo cursado($period->getIdPeriod()); ?></td>
+            <td><?php echo cursado($period->getIdUser()); ?></td>
             <td>
               <button  data-bs-toggle="modal" data-bs-target="#edit-<?php echo $period->getIdPeriod() ?>" class="btn "><img src="icons/edit-icon.svg" alt="edit"></button>
               <a href="./?controlador=Periods&accion=borrar&id=<?php echo $period->getIdPeriod(); ?>" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
