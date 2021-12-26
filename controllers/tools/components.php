@@ -7,12 +7,16 @@ public static function generateTable($titles = [], $objetos = []){
     
    echo ' <tr class=" text-center overflow-overflow-hidden lh-lg">';
    $arra = (array) $var;
-   foreach()
+   foreach($arra as $one){
+   if(typeof($one))
+   echo  '<td>$one</td>';
+   
+   }
     ?>
     
      
 
-        <td><?php echo $period->getCodPeriod(); ?></td>
+       
         <td><?php echo $period->getStartDate(); ?></td>
         <td><?php echo $period->getEndDate(); ?></td>
         <td><?php echo promedio($period->getIdPeriod()); ?></td>

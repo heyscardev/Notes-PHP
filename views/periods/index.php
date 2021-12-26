@@ -100,8 +100,8 @@ require_once('views/nav-bar.php');
 
         foreach ($datos_periodos as $period) {
         
-        $array = (array) $period;
-        echo gettype($period->getStartDate()); 
+        
+        
         
         
         ?>

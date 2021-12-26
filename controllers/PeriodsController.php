@@ -9,7 +9,7 @@ class PeriodsController{
         $head_principal["completado"]= "12";
         $head_principal["state"]= "por reprobar";
         $head_principal["period"] = "2-2020";
-        $datos_periodos = CRUDPeriods::ReadByIdUser(2);
+        $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
         $this->register();
         function promedio($id_period){
             return 1;

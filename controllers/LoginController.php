@@ -2,7 +2,7 @@
 include_once('models/crud/CRUDUsers.php');
 include_once('models/Users.php');
 class LoginController{
-private static Users  $User;
+private static   $User;
 private static $LoginPass = false;
 
 public static function Login(){
