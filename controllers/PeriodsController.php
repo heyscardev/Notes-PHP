@@ -1,6 +1,7 @@
 <?php
 include_once("models/Periods.php");
 include_once("models/crud/CRUDPeriods.php");
+//include_once("controllers/tools/components.php");
 
 class PeriodsController{
     public function inicio(){
@@ -18,8 +19,10 @@ class PeriodsController{
             return $id_period;
 
         }
+       // Tools::generateTable(
+       // array("Codigo de periodo","f. inicio","f. termina","opciones"),$datos_periodos,"getIdPeriod");  no pude implementar
         //completar
-
+        
         require_once('views/periods/index.php');
     }
  
