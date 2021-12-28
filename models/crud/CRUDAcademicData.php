@@ -35,19 +35,20 @@ class CRUDPeriods{
         }
         return $lista;
     }
-    public static function Delete(int $id){
+    public static function Delete(int $id_user){
         
         $cn = Connection::getInstance();
-        $comand = "DELETE FROM `periods` WHERE periods.id_period = ?" ;
+        $comand = "DELETE FROM `academic_data` WHERE academic_data.id_user = ?" ;
         $sql = $cn->prepare($comand);
         
-        return $sql->execute(array($id));
+        return $sql->execute(array($id_user));
     }
-    public static function update(Periods $per){
+    //modificado
+    public static function update(AcademicData $newObject){
         $cn = Connection::getInstance();
-        $comand = "UPDATE periods SET cod_period = ? , start_date = ? ,end_date = ?  WHERE id_period = ?";
+        $comand = "UPDATE academic_data SET institution_name = ? profession = ? , title = ? ,months_duration = ?  star_date=? WHERE id_user = ?";
         $sql = $cn->prepare($comand);
-        $sql->execute(array($per->getCodPeriod(),$per->getStartDate(),$per->getEndDate(),$per->getIdPeriod()));
+        $sql->execute(array($newObject->getInstitutionName(),$newObject->getProfession(),$newObject->getTitle(),$newObject->getMonthsDuration(),$newObject->getStarDate(),$newObject->getIdUser()));
     }
 
 }

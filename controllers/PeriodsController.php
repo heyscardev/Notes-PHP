@@ -1,6 +1,8 @@
 <?php
 include_once("models/Periods.php");
 include_once("models/crud/CRUDPeriods.php");
+include_once("models/AcademicData.php");
+
 //include_once("controllers/tools/components.php");
 
 class PeriodsController{
