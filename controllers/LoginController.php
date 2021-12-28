@@ -1,6 +1,7 @@
 <?php 
 include_once('models/crud/CRUDUsers.php');
 include_once('models/Users.php');
+include_once("models/AcademicData.php");
 class LoginController{
 private static   $User;
 private static $LoginPass = false;
@@ -59,5 +60,13 @@ public static function cerrarSesion(){
             header("location: ./");
             
     
+}
+public static function getAcademicData(){
+ if(self::getSesionState()){
+     return CRUDAcademicData::ReadByIdUser(self::getIdUser());
+ }else{
+    return new AcademicData(0,"","","",0,"000-00-00");
+ }
+ 
 }
 }

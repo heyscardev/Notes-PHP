@@ -2,17 +2,20 @@
 include_once("models/Periods.php");
 include_once("models/crud/CRUDPeriods.php");
 include_once("models/AcademicData.php");
+include_once("models/crud/CRUDAcademicData.php");
 
 //include_once("controllers/tools/components.php");
 
 class PeriodsController{
     public function inicio(){
-       
-        $head_principal["carrer"] = "Informatica";
-        $head_principal["completado"]= "12";
+       $adata = LoginController::getAcademicData();
+       $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+        $head_principal["carrer"] = strtoupper($adata->getProfession());
+        //aqui
+        $head_principal["completado"]= $datos_periodos->getStartDate();
         $head_principal["state"]= "por reprobar";
         $head_principal["period"] = "2-2020";
-        $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+        
         $this->register();
         function promedio($id_period){
             return 1;

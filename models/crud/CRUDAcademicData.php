@@ -2,7 +2,7 @@
 include_once("models/AcademicData.php");
 include_once("connection.php");
 
-class CRUDPeriods{
+class CRUDAcademicData{
     public static function Create(AcademicData $newObject){
         $cn = Connection::getInstance();
         $comand = "INSERT INTO academic_data(id_user,institution_name,title,profession,months_duration,star_date) VALUES(?,?,?,?,?,?)" ;
@@ -13,14 +13,14 @@ class CRUDPeriods{
     }
     
     public static function ReadByIdUser(int $id_User){
-        $academic = [];
+        
         $cn = Connection::getInstance();
         $comand = "SELECT * FROM `academic_data` WHERE academic_data.id_user = \"$id_User\" ";
         $sql = $cn->query($comand);
         
         
         foreach($sql->fetchAll() as $newresp){
-            $academic[] = new AcademicData($newresp['id_user'],$newresp['institution_name'],$newresp['profession'],$newresp['title'],$newresp['months_duration'],$newresp["star_date"]);
+            $academic = new AcademicData($newresp['id_user'],$newresp['institution_name'],$newresp['profession'],$newresp['title'],$newresp['months_duration'],$newresp["star_date"]);
         }
         
         return $academic;
