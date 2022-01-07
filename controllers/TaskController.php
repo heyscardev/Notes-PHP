@@ -1,15 +1,17 @@
 <?php
-include_once("models/Periods.php");
-include_once("models/crud/CRUDPeriods.php");
+//modificar para tareas aun no esta listo
+include_once("models/Tasks.php");
+include_once("models/crud/CRUDTasks.php");
 include_once("models/AcademicData.php");
 include_once("models/crud/CRUDAcademicData.php");
 include_once("controllers/tools/Validacion.php");
-//include_once("controllers/tools/components.php");
+include_once("models/crud/CRUDPeriods.php");
 
-class PeriodsController{
+class TaskController{
     public function inicio(){
        $adata = LoginController::getAcademicData();
-       $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+       $periodos_disponibles = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+       $datos = CRUDTasks::ReadByIdUser(LoginController::getIdUser());
        
         $head_principal["carrer"] = strtoupper($adata->getProfession());
         //aqui
@@ -17,19 +19,20 @@ class PeriodsController{
         $head_principal["state"]= "por reprobar";
         $head_principal["period"] = "2-2020";
         
-        $this->register();
-        function promedio($id_period){
-            return 1;
+        function entregado($id_task){
+            
         }
+        /*
+        $this->register();
+       
         function cursado($id_period){
             return $id_period;
 
         }
-       // Tools::generateTable(
-       // array("Codigo de periodo","f. inicio","f. termina","opciones"),$datos_periodos,"getIdPeriod");  no pude implementar
-        //completar
         
-        require_once('views/periods/index.php');
+       
+        */
+        require_once('views/tasks/index.php');
     }
  
     private function register(){
@@ -79,3 +82,4 @@ class PeriodsController{
 
     }
 }
+?>

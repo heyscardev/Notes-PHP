@@ -56,7 +56,7 @@
       <div class="w-100 bg-black"></div>
       <div
         class="col-12 col-md-2  d-flex animate__animated animate__fadeInRight animate__delay-3s justify-content-center">
-        <button type="button" class="btn btn-primary bg-transparent disabled  border-0 ">
+        <a type="button" href="./?controlador=Task&accion=inicio" class="btn btn-primary bg-transparent   border-0 ">
           <div class="ratio ratio-1x1 ratio-personalice">
             <img src="icons/actividades-icon-app.svg" alt="Notas_icon"
               class="img-boton  rounded-circle border border-5 border-primary w-100 bg-white ">
@@ -65,7 +65,7 @@
 
 
           <label for="" class=" fs-5 text-primary  text-decoration-underline">Actividades</label>
-        </button>
+  </a>
       </div>
       <div
         class="col-12 col-md-2 d-flex animate__animated animate__fadeInRight animate__delay-4s justify-content-center">

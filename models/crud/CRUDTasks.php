@@ -1,5 +1,7 @@
 <?php
 include_once("models/Tasks.php");
+include_once("models/Periods.php");
+include_once("models/subjects.php");
 
 class CRUDTasks{
     
@@ -19,16 +21,22 @@ class CRUDTasks{
         $sql = $cn->prepare($comand);
     }
 
-    public static function Read(int $id){
-        $task = NULL;
+    public static function ReadByIdUser(int $id){
+        
+        $group= [];
         $cn = Connection::getInstance();
-        $comand = "SELECT * FROM `tasks` WHERE tasks.id_task = $id" ;
+        $comand = "SELECT * FROM periods INNER JOIN subjects_studied ON periods.id_period = subjects_studied.id_period INNER JOIN tasks ON subjects_studied.id_subject_studied = tasks.id_subject_studied INNER JOIN subjects ON subjects.id_subject = subjects_studied.id_subject WHERE periods.id_user = 2" ;
         $sql = $cn->query($comand);
         
-        foreach($sql->fetchAll() as $newUser){
-            $user = new Users($newUser['id_user'],$newUser['email'],$newUser['password']);
+        foreach($sql->fetchAll() as $q){
+            $task = new Tasks($q["id_task"],$q["id_subject_studied"],$q[10],$q["description"],$q["subject_note"],$q["deliver_date"],$q["n_corte"]);
+            $period = new Periods($q['id_user'],$q['id_period'],$q['cod_period'],$q['start_date'],$q['end_date']);
+            $subject = new Subjects($q['id_subject'],$q[16],$q['approval_note'],$q['professor_name']);
+            $group[] = ["task"=>$task,"period" =>$period,"subject"=>$subject];
+            
+           
         }
-        return $user;
+        return $group;
     }
 
     public static function Delete(int $id){

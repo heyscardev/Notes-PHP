@@ -1,5 +1,7 @@
 <?php
 include_once("models/Subjects.php");
+include_once("models/Periods.php");
+include_once("models/Subjects.php");
 
 class CRUDAPSubjects{
     public static function Create(Subjects $newObject){

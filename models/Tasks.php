@@ -8,7 +8,8 @@ class Tasks{
     private $deliverDate;
     private $nCorte;
     
-    public function __construct(int $idTask,int $idSubjectStudied,string $name,string $description,float $subjectNote,DateTime $deliverDate,$nCorte ) {
+    public function __construct(int $idTask,int $idSubjectStudied,string $name,string $description,
+    float $subjectNote, $deliverDate,$nCorte ) {
         $this->idTask = $idTask;
         $this->idSubjectStudied = $idSubjectStudied;
         $this->name = $name;
