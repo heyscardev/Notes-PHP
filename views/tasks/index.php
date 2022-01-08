@@ -239,18 +239,18 @@
               </div>
               <div class="col-md-6">
                 <label for="validationCustom03" class="form-label">Nota de Peso en el corte</label>
-                <input type="number" max=100 min=0 step name="start_date" class="form-control" id="validationCustom03" required>
+                <input type="number" max=100 min=0 step name="start_date" class="form-control num" id="validationCustom03" required>
                 <div class="invalid-feedback">
                   por favor inserte una Nota valida
                 </div>
               </div>
               <div class="col-md-3 ">
-                <label for="validationCustom04" class="form-label">fecha de finalizado</label>
+                <label for="validationCustom04" class="form-label">fecha de entrega</label>
                 <input type="date" name="end_date" class="form-select" id="validationCustom04" required>
 
                 </input>
                 <div class="invalid-feedback">
-                  por favor inserte una fecha
+                  por favor inserte una fecha valida
                 </div>
 
                 <div class="col-12">
