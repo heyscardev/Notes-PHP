@@ -6,11 +6,13 @@ include_once("models/AcademicData.php");
 include_once("models/crud/CRUDAcademicData.php");
 include_once("controllers/tools/Validacion.php");
 include_once("models/crud/CRUDPeriods.php");
+include_once("models/crud/CRUDSubjects.php");
 
 class TaskController{
     public function inicio(){
        $adata = LoginController::getAcademicData();
        $periodos_disponibles = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+       $materias_disponibles = CRUDAPSubjects::ReadAll();
        $datos = CRUDTasks::ReadByIdUser(LoginController::getIdUser());
        
         $head_principal["carrer"] = strtoupper($adata->getProfession());

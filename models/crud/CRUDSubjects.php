@@ -10,6 +10,7 @@ class CRUDAPSubjects{
         $sql = $cn->prepare($comand);
         $sql->execute(array($newObject->getName(),$newObject->getApprovalNote(),$newObject->getProfessorName()));
     }
+   
     public static function Read(int $id){
         $academicData = NULL;
         $cn = Connection::getInstance();
@@ -24,7 +25,7 @@ class CRUDAPSubjects{
         return $subject;
     }
     public static function ReadAll(){
-        $listaUsuarios = [];
+        $lista = [];
         $cn = Connection::getInstance();
         $comand = "SELECT * FROM `subjects`" ;
         $sql = $cn->query($comand);
