@@ -4,9 +4,8 @@ class TasksEnds{
     private $idTaskEnd;
     private $url;
     private $examNote;
-    public function __construct($idTask,$idTaskEnd,$url,$examNote) {
+    public function __construct($idTask,$url,$examNote) {
         $this->idTask = $idTask;
-        $this->idTaskEnd = $idTaskEnd;
         $this->url = $url;
         $this->examNote = $examNote;
     }

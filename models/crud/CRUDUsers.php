@@ -24,6 +24,19 @@ class CRUDUsers{
         
         return $user;
     }
+    public static function ReadByEmail(string $email){
+        $user = NULL;
+        $cn = Connection::getInstance();
+        $comand = "SELECT * FROM `users` WHERE users.email = \"$email\" " ;
+        $sql = $cn->query($comand);
+        
+        
+        foreach($sql->fetchAll() as $newUser){
+            $user = new Users($newUser['id_user'],$newUser['email'],$newUser['password']);
+        }
+        
+        return $user;
+    }
     public static function ReadById(int $id){
         $user = NULL;
         $cn = Connection::getInstance();

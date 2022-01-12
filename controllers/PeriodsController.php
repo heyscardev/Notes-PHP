@@ -10,12 +10,15 @@ class PeriodsController{
     public function inicio(){
        $adata = LoginController::getAcademicData();
        $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
-       
+       function promediodelalumno(){
+      
+       return 64;
+       }
         $head_principal["carrer"] = strtoupper($adata->getProfession());
         //aqui
-        $head_principal["completado"]= "hello";
+        $head_principal["promedio"]= promediodelalumno();
         $head_principal["state"]= "por reprobar";
-        $head_principal["period"] = "2-2020";
+        $head_principal["title"] = "Periodos";
         
         $this->register();
         function promedio($id_period){
@@ -76,6 +79,17 @@ class PeriodsController{
         ErrorControl::appNoLoginRedirect();
         }
        
+       
 
     }
+    private function calCompletePeriod($start_date,$end_date){
+        $fecha1= new DateTime($start_date);
+        $fecha2= new DateTime($end_date);
+        $diff1 = $fecha1->diff($fecha2);
+        $diff1 = $fecha1->diffdate('Y/m/d'));
+        // El resultados sera 3 dias
+        echo $diff->days . ' dias';
+    
+    }
+    
 }

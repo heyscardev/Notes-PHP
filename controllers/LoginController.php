@@ -25,6 +25,24 @@ self::$User = NULL;
 self::$LoginPass = false;
 return false;
 }
+public static function LoginEmailUser(string $email,string $password){
+   
+        $user_server =    CRUDUsers::Read($email,$password);
+        if($user_server != null  ){
+            self::$User = $user_server;
+            $_SESSION["id_user"] = $user_server->getIdUser();
+            $_SESSION["email"] = $user_server->getEmail();
+            $_SESSION["password"] = $user_server->getPassword();
+            header("location: .?controlador=views&accion=app");
+         return true;
+    }
+    
+    
+    
+    self::$User = NULL;
+    self::$LoginPass = false;
+    return false;
+    }
 public static function sesionComprove(){
 
     if(isset($_SESSION["id_user"]) && isset($_SESSION["email"]) && isset($_SESSION["password"])){

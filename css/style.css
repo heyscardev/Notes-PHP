@@ -11498,8 +11498,12 @@ nav {
   height: 80vh;
 }
 
+.ratio-personalice-menu {
+  min-width: 19em;
+}
+
 .ratio-personalice {
-  min-width: 8em;
+  min-width: 9em;
 }
 
 .wave {

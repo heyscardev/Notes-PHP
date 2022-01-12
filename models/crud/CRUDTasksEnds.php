@@ -1,19 +1,32 @@
 <?php
 include_once("models/TasksEnds.php");
 
-class CRUDAPSubjects{
+class CRUDTasksEnds{
 
     public static function Create(TasksEnds $newObject){
         $cn = Connection::getInstance();
-        $comand = "INSERT INTO tasks_ends (url, exam_note) VALUES(?,?)";
+        $idresp = NULL;
+        $comand = "SELECT MAX(id_task) FROM `tasks`";
+        $sql = $cn->query($comand);
+        foreach($sql->fetchAll() as $id){
+           $idresp = $id[0];
+        }
+        $comand = "INSERT INTO `tasks_ends` (`id_task`, `url`, `exam_note`, `id_task_end`) VALUES (?, ?, ?, ?);";
         $sql = $cn->prepare($comand);
-        $sql->execute(array($newObject->getUrl(), $newObject->getExamNote()));
+        $sql->execute(array($idresp, $newObject->getUrl(), $newObject->getExamNote(), $newObject->getIdTaskEnd()));
+    }
+
+    public static function Update(TasksEnds $newObject){
+        $cn = Connection::getInstance();
+        $comand = "UPDATE tasks_ends SET exam_note = ? WHERE id_task = ?";
+        $sql = $cn->prepare($comand);
+        $sql->execute(array($newObject->getExamNote(),$newObject->getIdTask()));
     }
 
     public static function Read(int $id){
-        $academicData = NULL;
+        $tasksEnds = NULL;
         $cn = Connection::getInstance();
-        $comand = "SELECT * FROM `tasks_ends` WHERE id_task_end = $id" ;
+        $comand = "SELECT * FROM `tasks_ends` WHERE id_task = $id" ;
         $sql = $cn->query($comand);
         
         foreach($sql->fetchAll() as $newUser){
@@ -36,10 +49,21 @@ class CRUDAPSubjects{
 
     public static function Delete(int $id){
         $cn = Connection::getInstance();
-        $comand = "DELETE FROM `tasks_ends` WHERE 'id_task_end' = ?" ;
+        $comand = "DELETE FROM `tasks_ends` WHERE 'id_task' = ?" ;
         $sql = $cn->prepare($comand);
         
         return $sql->execute(array($id));
+    }
+
+    public static function ReadIdTask(int $id){
+        $idss = NULL;
+        $cn = Connection::getInstance();
+        $comand = "SELECT exam_note FROM `tasks_ends` INNER JOIN tasks t ON tasks_ends.id_task = t.id_task WHERE t.id_task = $id" ;
+        $sql = $cn->query($comand);
+        foreach($sql->fetchAll() as $q){
+            $idss =  $q["exam_note"];
+        }
+        return $idss;
     }
 }
 ?>

@@ -9,9 +9,17 @@ if(LoginController::getSesionState()){
     $controlador->$accion();
 
 }else{
+if(ucfirst($controlador)=="Users"){
+    require_once('controllers/UsersController.php');
+    $controlador = new UsersController();
+    $controlador->register();
+
+
+}else{
     require_once('controllers/ViewsController.php');
     $controlador = new ViewsController();
     $controlador->app();
+}
 }
   
  }else{

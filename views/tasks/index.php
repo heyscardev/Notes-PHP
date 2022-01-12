@@ -146,14 +146,19 @@
               <!--7-->
               <td><?php echo $dato["task"]->getDeliverDate(); ?></td>
               <!--8-->
-              <td><?php echo $dato["task"]->getDeliverDate(); ?></td>
+              <td><?php if (isset($dato["taskend"])) {
+                    echo $dato["taskend"]->getExamNote();
+                  } else {
+                    echo "--";
+                  } ?></td>
 
               <!--9-->
               <td>
                 <button data-bs-toggle="modal" data-bs-target="#edit-<?php echo $dato["task"]->getIdTask(); ?>" class="btn "><img src="icons/edit-icon.svg" alt="edit"></button>
-                <a href="./?controlador=Periods&accion=borrar&id=<?php echo $dato["task"]->getIdTask(); ?>" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
-                <a href="" class="btn "><img src="icons/arrow-star-icon.svg" style="transform: rotate(180deg);" alt="ir"></a>
-
+                <a href="./?controlador=Task&accion=borrar&id=<?php echo $dato["task"]->getIdTask(); ?>" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
+                <button data-bs-toggle="modal" data-bs-target="#nota-<?php echo $dato["task"]->getIdTask() ?>" class="btn "><label class="border border-3 border-primary rounded p-1 text-primary">NOTA</label></button>
+                <?php require("views/tasks/updateModal.php") ?>
+                <?php require("views/tasks/noteModal.php") ?>
               </td>
 
             </tr>
@@ -178,41 +183,41 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body py-2 bg-secondary">
-            
-            <form method="post" class="row g-3 needs-validation" id="form-c-period" novalidate>
-            <!--       selecpcion periodo            -->
+
+            <form method="post" ac class="row g-3 needs-validation" id="form-c-task" novalidate>
+              <!--       seleccion tarea            -->
               <div class="col-md-9">
-                <label for="validationCustomUsername " class="form-label">Seleccione Periodo</label>
+
                 <div class="form-group has-validation">
 
-                  <select name="period_id" id="" class="form-control form-control-lg ">
-                    <?php foreach ($periodos_disponibles as $und) {
-                    ?>
-                      <option class="bg-info" value=<?php echo $und->getIdPeriod(); ?>> <?php echo $und->getCodPeriod(); ?>
+                  <div class="col-md-10">
+                    <label for="validationCustom03" class="form-label">Tarea</label>
+                    <input type="text" maxlenght=100 minlength=0 placeholder="Ingrese el nombre de la tarea" step name="nombre_tarea" class="form-control" id="validationCustom03" required>
+                    <div class="invalid-feedback">
+                      por favor inserte un nombre valido
+                    </div>
+                  </div>
 
-                      </option>
-                    <?php } ?>
-                  </select>
                   <div class="invalid-feedback">
-                    por favor selepcione un periodo
+                    por favor seleccione un periodo
                   </div>
                 </div>
               </div>
-<!--       selecpcion de corte            -->
+              <!--       selecccion de corte            -->
               <div class="col-md-3">
                 <label for="validationCustomUsername" class="form-label">Corte</label>
                 <div class="input-group has-validation text-primary fs-5" required>
 
                   <div class="form-check form-check-inline ">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required >
+                    <input class="form-check-input" type="radio" name="corte" id="inlineRadio1" value="1" required>
                     <label class="form-check-label" for="inlineRadio1">1</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" name="corte" id="inlineRadio2" value="2">
                     <label class="form-check-label" for="inlineRadio2">2</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                    <input class="form-check-input" type="radio" name="corte" id="inlineRadio3" value="3">
                     <label class="form-check-label" for="inlineRadio3">3</label>
                   </div>
                   <div class="invalid-feedback">
@@ -220,14 +225,16 @@
                   </div>
                 </div>
               </div>
+
+
               <div class="col-md-12">
                 <label for="validationCustomUsername " class="form-label">Seleccione Materia</label>
                 <div class="form-group has-validation">
 
-                  <select name="materia" id="" class="form-control form-control-lg bg-info " >
+                  <select name="materia_tarea" id="" class="form-control form-control-lg bg-info ">
                     <?php foreach ($materias_disponibles as $und) {
                     ?>
-                      <option class="" value=<?php echo $und->getIdSubject(); ?>> <?php echo $und->getName()."-".$und->getProfessorName(); ?>
+                      <option class="" value=<?php echo $und->getIdSubject(); ?>> <?php echo $und->getName() . "-" . $und->getProfessorName(); ?>
 
                       </option>
                     <?php } ?>
@@ -237,20 +244,31 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-md-6">
                 <label for="validationCustom03" class="form-label">Nota de Peso en el corte</label>
-                <input type="number" max=100 min=0 step name="start_date" class="form-control num" id="validationCustom03" required>
+                <input type="number" max=100 min=0 placeholder="Ingrese el peso de nota" step name="nota_tarea" class="form-control" id="validationCustom03" required>
                 <div class="invalid-feedback">
                   por favor inserte una Nota valida
                 </div>
               </div>
-              <div class="col-md-3 ">
-                <label for="validationCustom04" class="form-label">fecha de entrega</label>
-                <input type="date" name="end_date" class="form-select" id="validationCustom04" required>
+
+              <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Descripción</label>
+                <input type="text" maxlength=100 mminlength=0 placeholder="Descripción" step name="descripcion_tarea" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                  por favor inserte una descripción valida
+                </div>
+              </div>
+
+
+              <div class="col-md-6 ">
+                <label for="validationCustom04" class="form-label">Fecha de entrega</label>
+                <input type="datetime-local" name="end_date_tarea" class="form-select" id="validationCustom04" required>
 
                 </input>
                 <div class="invalid-feedback">
-                  por favor inserte una fecha valida
+                  por favor inserte una fecha
                 </div>
 
                 <div class="col-12">
@@ -261,7 +279,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary fw-bolder text-primary" data-bs-dismiss="modal">Cancelar</button>
-            <button class="btn btn-primary fw-bolder text-white" form="form-c-period" type="submit">Crear</button>
+            <button class="btn btn-primary fw-bolder text-white" form="form-c-task" type="submit">Crear</button>
           </div>
         </div>
       </div>

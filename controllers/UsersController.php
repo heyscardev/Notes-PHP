@@ -3,13 +3,18 @@
  include_once("Connection.php");
 class UsersController{
 public function register(){
-    if($_POST){
-        
-    CRUDUsers::Create(new Users(0,strtolower($_POST["email"]),$_POST["password"]));
-   
-     print_r(CRUDUsers::Delete(1));
-    
-      
+$error = "";
+    if(isset($_POST["email"])&&isset($_POST["password"])){
+       if(CRUDUsers::ReadByEmail($_POST["email"])==NULL){
+       
+       $error ="";
+       CRUDUsers::Create(new Users(0,strtolower($_POST["email"]),$_POST["password"]));
+       LoginController::LoginEmailUser($_POST["email"],$_POST["password"]);
+       }else{
+       $error = "$_POST[email] ya se ha registrado";
+       
+       }
+
     }
       require_once("views/user/create.php");
 }
