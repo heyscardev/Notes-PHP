@@ -35,7 +35,21 @@ class CRUDSubjectsStudied{
         
         return $group;
     }
-    
+    public static function ReadByIdPeriod(int $id){
+        $subjectStudied = [];
+        $cn = Connection::getInstance();
+        $comand = "SELECT * FROM `subjects_studied`  WHERE subjects_studied.id_period = $id;
+        " ;
+        $sql = $cn->query($comand);
+        
+        
+        foreach($sql->fetchAll() as $q){
+            $subjectStudied[] =  new SubjectsStudied($q['id_period'],$q['id_subject'],$q['id_subject_studied']);
+            
+        }
+        
+        return $subjectStudied;
+    }
     public static function Read(int $id){
         $subjectStudied = NULL;
         $cn = Connection::getInstance();

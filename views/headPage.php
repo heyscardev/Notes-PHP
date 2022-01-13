@@ -23,11 +23,11 @@
               <label class="text-white fs-1 fw-bolder"> <span><?php echo $head_principal["title"] ?></span></label>
             </div>
             <div class="row  mx-3 fs-5 ">
-              <div class="col   "><label class="mx-2 fw-bolder fs-4" for="">Carrera:</label><label for=""><?php echo $head_principal["carrer"] ?></label></div>
+              <div class="col   "><label for=""><?php echo $head_principal["carrer"] ?></label></div>
 
             </div>
             <div class="row mx-3 fs-5">
-              <div class="col"><label class="mx-2 fw-bolder fs-4" for="">Estado: </label><label for=""><?php echo $head_principal["state"] ?></label></div>
+              <div class="col"><label for=""><?php echo $head_principal["state"] ?></label></div>
             </div>
 
           </div>

@@ -13,7 +13,7 @@ class CRUDAcademicData{
     }
     
     public static function ReadByIdUser(int $id_User){
-        
+        $academic = NULL;
         $cn = Connection::getInstance();
         $comand = "SELECT * FROM `academic_data` WHERE academic_data.id_user = \"$id_User\" ";
         $sql = $cn->query($comand);

@@ -8,15 +8,20 @@ include_once("models/crud/CRUDTasksEnds.php");
 include_once("controllers/tools/Validacion.php");
 include_once("models/crud/CRUDPeriods.php");
 include_once("models/crud/CRUDSubjects.php");
-
+include_once("models/crud/CRUDSubjectsStudied.php");
 class TaskController{
     public function inicio(){
         $datos = [];
+        $head_principal["carrer"] ="Materia : todas";
         if (isset($_GET["id"])) {
             $a = CRUDTasks::ReadByIdUser(LoginController::getIdUser());
             $datos = array_filter($a, function ($p) {
                 return $p["task"]->getIdSubjectStudied() == $_GET["id"];
+              
             });
+            $id_subject = CRUDSubjectsStudied::Read($_GET["id"])->getIdSubject();
+            $name = CRUDAPSubjects::Read($id_subject)->getName();
+            $head_principal["carrer"] ="Materia : ".$name;
         } else {
 
             $datos = CRUDTasks::ReadByIdUser(LoginController::getIdUser());
@@ -26,16 +31,38 @@ class TaskController{
        $materias_disponibles = CRUDAPSubjects::ReadByIdUser(LoginController::getIdUser());
        
        
-        $head_principal["carrer"] = strtoupper($adata->getProfession());
-        //aqui
-        $head_principal["completado"]= "hello";
-        $head_principal["state"]= "por reprobar";
-        $head_principal["period"] = "2-2020";
-        
-        function entregado($id_task){
-            
+       function promedio($id_period)
+        {
+            CRUDSubjectsStudied::ReadByIdPeriod($id_period);
+            $promedio = 0;
+            $suma = 0;
+            $contmateria = 0;
+            foreach (CRUDSubjectsStudied::ReadByIdPeriod($id_period) as $subjectA) {
+                $contmateria++;
+                $suma +=  CRUDAPSubjects::getSubjectNote($subjectA->getIdSubjectStudied());
+            }
+            if($contmateria != 0)
+            $promedio  = $suma / $contmateria;
+
+            return $promedio;
         }
-        
+        function promediodelalumno()
+        {
+            $array = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+            $suma = 0;
+            foreach ($array as $period) {
+                $suma += promedio($period->getIdPeriod());
+            }
+            if(count($array))
+            return $suma / count($array);
+            return 0;
+        }
+        $head_principal["carrer"] = "";
+        //aqui
+        $head_principal["promedio"] = promediodelalumno();
+        $head_principal["state"] = "";
+        $head_principal["title"] = "Tareas";
+
         $this->register();
        /*
         function cursado($id_period){

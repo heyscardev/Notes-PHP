@@ -27,16 +27,39 @@ class SubjectsController
         $adata = LoginController::getAcademicData();
         $adata = LoginController::getAcademicData();
         $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+        function promedio($id_period)
+        {
+            CRUDSubjectsStudied::ReadByIdPeriod($id_period);
+            $promedio = 0;
+            $suma = 0;
+            $contmateria = 0;
+            foreach (CRUDSubjectsStudied::ReadByIdPeriod($id_period) as $subjectA) {
+                $contmateria++;
+                $suma +=  CRUDAPSubjects::getSubjectNote($subjectA->getIdSubjectStudied());
+            }
+            if($contmateria!= 0){
+            $promedio  = $suma / $contmateria;
+            }
+            return $promedio;
+        }
         function promediodelalumno()
         {
-
-            return 64;
+            $array = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
+            $suma = 0;
+            foreach ($array as $period) {
+                $suma += promedio($period->getIdPeriod());
+            }
+            if(count($array)!= 0){
+            return $suma / count($array);
+            }
+            return 0;
         }
-        $head_principal["carrer"] = strtoupper($adata->getProfession());
+        $head_principal["carrer"] = "";
         //aqui
         $head_principal["promedio"] = promediodelalumno();
-        $head_principal["state"] = "por reprobar";
-        $head_principal["title"] = "Materias";
+        $head_principal["state"] = "";
+        $head_principal["title"] = "MATERIAS";
+
 
         $this->register();
         function Nota_materia($id_subject_note)

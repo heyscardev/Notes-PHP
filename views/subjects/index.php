@@ -69,7 +69,7 @@ require_once("views/headPage.php");
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-primary fs-1" id="exampleModalLabel">Registro de Periodo</h5>
+          <h5 class="modal-title text-primary fs-1" id="exampleModalLabel">Registro de materia</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body py-2 bg-secondary">
@@ -106,7 +106,7 @@ require_once("views/headPage.php");
             <label for="validationCustom04" class="form-label">Nota para Aprobar</label>
             <div class="input-group has-validation">
               <span class="input-group-text" id="inputGroupPrepend">%</span>
-              <input type="number" name="approvalNote" max="100" min="1" class="form-control fs-3" id="validationCustom04" value="" required>
+              <input type="number" name="approvalNote" step="0.01" max="100" min="1" class="form-control fs-3" id="validationCustom04" value="" required>
               <div class="invalid-feedback">
                 por favor un % valido
               </div>

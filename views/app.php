@@ -15,21 +15,7 @@
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-    <div
-        class=" d-flex my-5   justify-content-center">
-
-        <a type="button"  href="./?controlador=Subjects&accion=inicio" class="btn btn-primary bg-transparent   border-0 ">
-          <div class="ratio ratio-1x1 ratio-personalice-menu ">
-            <img src="icons/materias-icon-app.svg" alt="Materias_icon"
-              class="img-boton  rounded-circle border border-5 border-primary w-100 bg-white ">
-          </div>
-
-          <label for="" class=" fs-4 text-primary  text-decoration-underline">Tus Materias</label>
-  </a>
-      </div>
-    </div>
-    <div class="carousel-item">
+  <div class="carousel-item active">
     <div
         class=" d-flex my-5   justify-content-center">
         <a href="./?controlador=Periods&accion=inicio" type="button" class="btn btn-primary bg-transparent  border-0 ">
@@ -45,6 +31,21 @@
        
       </div>
     </div>
+    <div class="carousel-item ">
+    <div
+        class=" d-flex my-5   justify-content-center">
+
+        <a type="button"  href="./?controlador=Subjects&accion=inicio" class="btn btn-primary bg-transparent   border-0 ">
+          <div class="ratio ratio-1x1 ratio-personalice-menu ">
+            <img src="icons/materias-icon-app.svg" alt="Materias_icon"
+              class="img-boton  rounded-circle border border-5 border-primary w-100 bg-white ">
+          </div>
+
+          <label for="" class=" fs-4 text-primary  text-decoration-underline">Tus Materias</label>
+  </a>
+      </div>
+    </div>
+   
     <div class="carousel-item">
     <div
         class=" d-flex my-5   justify-content-center">

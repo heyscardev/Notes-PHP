@@ -6,6 +6,10 @@ use function PHPSTORM_META\type;
 
 require_once('views/nav-bar.php');
 require_once("views/headPage.php");
+if(ErrorControl::$error_message != ""){
+
+ ErrorControl::alertWarning(ErrorControl::$error_message);
+}
   ?>
  
   <!--tabla periods -->
@@ -38,7 +42,7 @@ require_once("views/headPage.php");
             <td><?php echo $period->getStartDate(); ?></td>
             <td><?php echo $period->getEndDate(); ?></td>
             <td><?php echo promedio($period->getIdPeriod()); ?></td>
-            <td><?php echo cursado($period->getIdUser()); ?></td>
+            <td><?php echo cursado($period->getStartDate(),$period->getEndDate() ); ?></td>
             <td>
               <button  data-bs-toggle="modal" data-bs-target="#edit-<?php echo $period->getIdPeriod() ?>" class="btn "><img src="icons/edit-icon.svg" alt="edit"></button>
               <a href="./?controlador=Periods&accion=borrar&id=<?php echo $period->getIdPeriod(); ?>" class="btn "><img src="icons/trash-icon.svg" " alt=" delete"></a>
@@ -52,7 +56,9 @@ require_once("views/headPage.php");
     </table>
   </div>
 
-
+  
+ 
+ 
   <!-- Button trigger modal -->
   <div class="position-absolute bottom-0 m-5 end-0 ">
     <button type="button" data-bs-toggle="modal" data-bs-target="#modal-create" class="   text-primary fw-bolder btn  bg-white  rounded-circle   border-5 border-primary fs-1 p-0 lh-xs px-3 ">
@@ -84,7 +90,7 @@ require_once("views/headPage.php");
             </div>
             <div class="col-md-6">
               <label for="validationCustom03" class="form-label">fecha de inicio</label>
-              <input type="date" name="start_date" class="form-control" id="validationCustom03" required>
+              <input type="date" min="1940-01-01" max="<?php echo  date("Y-m-d",strtotime(date("Y-m-d")."+ 5 year")); ?>" name="start_date" class="form-control" id="validationCustom03" required>
               <div class="invalid-feedback">
                 por favor inserte una fecha
               </div>
