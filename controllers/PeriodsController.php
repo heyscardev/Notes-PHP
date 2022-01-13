@@ -1,11 +1,11 @@
 <?php
 include_once("models/Periods.php");
 include_once("models/crud/CRUDPeriods.php");
-include_once("models/AcademicData.php");
-include_once("models/crud/CRUDAcademicData.php");
+include_once("models/crud/CRUDTasksEnds.php");
+include_once("models/crud/CRUDTasks.php");
+
 include_once("models/crud/CRUDSubjectsStudied.php");
 include_once("models/crud/CRUDSubjects.php");
-include_once("controllers/tools/Validacion.php");
 require_once("views/error.php");
 //include_once("controllers/tools/components.php");
 
@@ -13,7 +13,7 @@ class PeriodsController
 {
     public function inicio()
     {
-        $adata = LoginController::getAcademicData();
+      
         $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
         function promedio($id_period)
         {
@@ -25,6 +25,7 @@ class PeriodsController
                 $contmateria++;
                 $suma +=  CRUDAPSubjects::getSubjectNote($subjectA->getIdSubjectStudied());
             }
+            $suma = $suma/5;
             if($contmateria!= 0){
                 $promedio  = $suma / $contmateria;
             
@@ -63,12 +64,13 @@ class PeriodsController
             $fechaactual = new DateTime(date('Y/m/d'));;
             $diff1 = $fecha1->diff($fecha2);
             $diff2 = $fecha1->diff($fechaactual);
-            if ($diff1->days <= $diff2->days) {
-                return "periodo Terminado";
-            }
+          
             if ($fecha1 > $fechaactual) {
                $falta = $fechaactual->diff($fecha1);
                 return "periodo sin empezar falta ($falta->days)dias";
+            }
+            if ($diff1->days <= $diff2->days) {
+                return "periodo Terminado";
             }
             return number_format($diff2->days * 100 /  $diff1->days, 2, ".") . "%";
         }
@@ -106,8 +108,18 @@ class PeriodsController
         if (LoginController::getSesionState()) {
             if (isset($_GET["id"])) {
                
-                    $se = CRUDSubjectsStudied::ReadByIdPeriod($_GET["id"]);
+                   
+                    
+                    foreach (CRUDSubjectsStudied::ReadByIdPeriod($_GET["id"]) as $su) {
+                      
+                        CRUDTasksEnds::DeleteByIdSubjectStudied($su->getIdSubjectStudied());
+                        CRUDTasks::DeleteByIdSubjecStudied($su->getIdSubjectStudied());
+                        CRUDSubjectsStudied::Delete($su->getIdSubjectStudied());
+                        CRUDAPSubjects::Delete($su->getIdSubject());
+                    }
+                    
                     CRUDPeriods::Delete(intval($_GET["id"]));
+
 
                     header("location: ./?controlador=Periods&accion=inicio");
               

@@ -29,9 +29,7 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link ">AboutUS</a>
-            </li>
+            
           </ul>
 
         </div>

@@ -54,6 +54,23 @@ class CRUDTasksEnds{
         
         return $sql->execute(array($id));
     }
+    public static function DeleteByIdSubjectStudied(int $id_subjectStudied){
+        $cn = Connection::getInstance();
+        require_once("models/crud/CRUDTasks.php");
+       $D = CRUDTasks::readByIdSubjectStudied($id_subjectStudied);
+
+        foreach ($D as $s) {
+    echo $s->getIdTask();
+            $comand = "DELETE FROM `tasks_ends` WHERE id_task = ?" ;
+            $sql = $cn->prepare($comand);
+            
+            $sql->execute(array($s->getIdTask()));
+            
+        }
+       
+
+    
+    }
 
     public static function ReadIdTask(int $id){
         $idss = NULL;

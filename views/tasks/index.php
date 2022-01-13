@@ -48,7 +48,7 @@ require_once('views/headPage.php');
             <!--6-->
             <th>Nota estudiante</th>
             <!--7-->
-
+            <th>Nota estudiante (NETO)</th>
             <th>opciones</th>
             <!--9-->
           </tr>
@@ -81,6 +81,10 @@ require_once('views/headPage.php');
                   } else {
                     echo "--";
                   } ?></td>
+                  <td><?php  if (isset($dato["taskend"])){echo $dato["taskend"]->getExamNote()/ 5;}else {
+                    echo "--";
+                  };
+                   ?></td>
 
               <!--9-->
               <td>

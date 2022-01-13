@@ -4,8 +4,10 @@ include_once("models/crud/CRUDSubjectsStudied.php");
 include_once("models/crud/CRUDPeriods.php");
 include_once("models/SubjectsStudied.php");
 include_once("models/crud/CRUDSubjects.php");
-include_once("models/AcademicData.php");
-include_once("models/crud/CRUDAcademicData.php");
+include_once("models/crud/CRUDTasksEnds.php");
+include_once("models/crud/CRUDTasks.php");
+
+
 include_once("controllers/tools/Validacion.php");
 //include_once("controllers/tools/components.php");
 
@@ -24,8 +26,8 @@ class SubjectsController
             $datos_subjects = CRUDSubjectsStudied::ReadByIdUser(LoginController::getIdUser());
         }
         $periodos_disponibles =  CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
-        $adata = LoginController::getAcademicData();
-        $adata = LoginController::getAcademicData();
+        
+       
         $datos_periodos = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
         function promedio($id_period)
         {
@@ -37,9 +39,13 @@ class SubjectsController
                 $contmateria++;
                 $suma +=  CRUDAPSubjects::getSubjectNote($subjectA->getIdSubjectStudied());
             }
+            $suma = $suma/5;
             if($contmateria!= 0){
-            $promedio  = $suma / $contmateria;
+                $promedio  = $suma / $contmateria;
+            
             }
+           
+
             return $promedio;
         }
         function promediodelalumno()
@@ -109,8 +115,11 @@ class SubjectsController
     {
         if (LoginController::getSesionState()) {
             if (isset($_GET["id"]) && isset($_GET["ids"])) {
+                $ID_TASK = CRUDSubjectsStudied::Read($_GET["id"]);
+                CRUDTasksEnds::Delete($_GET["id"]);
+                CRUDTasks::DeleteByIdSubjecStudied($ID_TASK->getIdSubjectStudied());
                 CRUDSubjectsStudied::Delete($_GET["id"]);
-                CRUDAPSubjects::Delete($_GET["ids"]);
+                CRUDAPSubjects::Delete($ID_TASK->getIdSubject());
 
                 header("location: ./?controlador=subjects&accion=inicio");
             }

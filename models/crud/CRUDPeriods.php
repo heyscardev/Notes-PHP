@@ -37,6 +37,8 @@ class CRUDPeriods{
         
         return $period;
     }
+
+   
     public static function ReadAll(){
         $listaPeriodos = [];
         $cn = Connection::getInstance();

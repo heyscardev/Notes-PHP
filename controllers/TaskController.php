@@ -2,8 +2,8 @@
 //modificar para tareas aun no esta listo
 include_once("models/Tasks.php");
 include_once("models/crud/CRUDTasks.php");
-include_once("models/AcademicData.php");
-include_once("models/crud/CRUDAcademicData.php");
+
+
 include_once("models/crud/CRUDTasksEnds.php");
 include_once("controllers/tools/Validacion.php");
 include_once("models/crud/CRUDPeriods.php");
@@ -26,10 +26,9 @@ class TaskController{
 
             $datos = CRUDTasks::ReadByIdUser(LoginController::getIdUser());
         }
-       $adata = LoginController::getAcademicData();
+       
        $periodos_disponibles = CRUDPeriods::ReadByIdUser(LoginController::getIdUser());
        $materias_disponibles = CRUDAPSubjects::ReadByIdUser(LoginController::getIdUser());
-       
        
        function promedio($id_period)
         {
@@ -41,8 +40,12 @@ class TaskController{
                 $contmateria++;
                 $suma +=  CRUDAPSubjects::getSubjectNote($subjectA->getIdSubjectStudied());
             }
-            if($contmateria != 0)
-            $promedio  = $suma / $contmateria;
+            $suma = $suma/5;
+            if($contmateria!= 0){
+                $promedio  = $suma / $contmateria;
+            
+            }
+           
 
             return $promedio;
         }

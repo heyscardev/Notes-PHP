@@ -12,12 +12,26 @@ class CRUDTasks{
         $sql->execute( array($newObject->getIdSubjectStudied(),$newObject->getName(), $newObject->getDescription(), $newObject->getSubjectNote(), $newObject->getDeliverDate(), $newObject->getNCorte()));
     }
 
+    public static function readByIdSubjectStudied(int $id_subjectStudied){
+        $obj = [];
+        $cn = Connection::getInstance();
+        $comand = "SELECT * FROM  tasks WHERE id_subject_studied = $id_subjectStudied" ;
+        $sql = $cn->query($comand);
+        
+        foreach($sql->fetchAll() as $q){
+    $obj[] =new Tasks($q["id_task"],$q["id_subject_studied"],$q["name"],$q["description"],$q["subject_note"],$q["deliver_date"],$q["n_corte"]);
+    
+        }   
+        return $obj;
+    }
+
     public static function Update(Tasks $newObject){
         $cn = Connection::getInstance();
         $comand = "UPDATE tasks SET id_subject_studied = ?, name = ? , description = ?, subject_note = ?, deliver_date = ?, n_corte = ? WHERE id_task = ?";
         $sql = $cn->prepare($comand);
         $sql->execute(array($newObject->getIdSubjectStudied(),$newObject->getName(), $newObject->getDescription(), $newObject->getSubjectNote(), $newObject->getDeliverDate(), $newObject->getNCorte(), $newObject->getIdTask()));
     }
+   
 
     public static function ReadByIdUser(int $id){
         
@@ -44,11 +58,20 @@ class CRUDTasks{
         }
         return $group;
     }
+    
 
     public static function Delete(int $id){
         
         $cn = Connection::getInstance();
         $comand = "DELETE FROM `tasks` WHERE tasks.id_task = ?" ;
+        $sql = $cn->prepare($comand);
+        
+        return $sql->execute(array($id));
+    }
+    public static function DeleteByIdSubjecStudied(int $id){
+        
+        $cn = Connection::getInstance();
+        $comand = "DELETE FROM `tasks` WHERE tasks.id_subject_studied = ?" ;
         $sql = $cn->prepare($comand);
         
         return $sql->execute(array($id));

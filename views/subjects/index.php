@@ -41,7 +41,7 @@ require_once("views/headPage.php");
             <td><?php echo $dato["subject"]->getProfessorName(); ?></td>
             <td><?php echo $dato["subject"]->getApprovalNote(); ?>%</td>
           
-            <td><?php echo Nota_materia($dato["subjectStudied"]->getIdSubjectStudied()); ?> / 100%</td>
+            <td><?php echo Nota_materia($dato["subjectStudied"]->getIdSubjectStudied())/5; ?> / 100%</td>
             <td><?php echo CURSADO_MATERIA($dato["subjectStudied"]->getIdSubjectStudied()); ?> / 100%</td>
             
             <td>
