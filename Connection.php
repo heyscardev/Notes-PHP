@@ -1,7 +1,7 @@
 <?php
 class Connection{
 private static  $conec = NULL;
-private  static $DB_NAME = 'db_notes';
+private  static $DB_NAME = 'notes_db';
 private static $USER_NAME= 'root'; 
 private static $USER_PASS = '1234567890';
 private static  $HOST = '127.0.0.1';

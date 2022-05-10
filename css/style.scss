@@ -21,13 +21,9 @@ $theme-colors: (
   
 
 );
-@import "bootstrap/scss/bootstrap.scss";
-
-
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 .principal{
     background-image: linear-gradient(to right, white 50%,#34C8D4 50%);
-   
-   
   }
 
   .icon-login{
